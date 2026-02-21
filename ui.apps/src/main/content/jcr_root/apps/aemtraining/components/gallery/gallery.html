@@ -1,0 +1,83 @@
+<sly data-sly-use.model="com.aemtraining.core.models.GalleryModel" />
+
+<section class="py-16 px-6 bg-gradient-to-b from-gray-50 to-white">
+
+    <!-- Header -->
+    <div class="max-w-6xl mx-auto text-center mb-14">
+        <h2 class="text-5xl font-extrabold text-gray-900 tracking-tight">
+            ${model.title}
+        </h2>
+
+        <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+            ${model.description}
+        </p>
+    </div>
+
+    <!-- Gallery Grid -->
+    <div class="max-w-6xl mx-auto grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+
+        <sly data-sly-list.img="${model.images}">
+
+            <div
+                    class="group cursor-pointer overflow-hidden rounded-3xl shadow-xl bg-white hover:shadow-2xl transition duration-500"
+                    data-src="${img.src}"
+                    data-caption="${img.caption}">
+
+                <!-- Image -->
+                <img
+                        src="${img.src}"
+                        alt="${img.caption}"
+                        class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700"/>
+
+                <!-- Caption Overlay -->
+                <div
+                        class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition duration-500 flex items-end p-6">
+                    <h3 class="text-white text-lg font-semibold">
+                        ${img.caption}
+                    </h3>
+                </div>
+            </div>
+
+        </sly>
+
+    </div>
+</section>
+
+<!-- ================= LIGHTBOX ================= -->
+<div id="lightbox"
+     class="fixed inset-0 bg-black/90 hidden z-50 flex items-center justify-center">
+
+    <!-- Close -->
+    <button id="closeBtn"
+            class="absolute top-6 right-8 text-white text-4xl font-bold">
+        ✕
+    </button>
+
+    <!-- Prev -->
+    <button id="prevBtn"
+            class="absolute left-8 text-white text-5xl font-bold">
+        ‹
+    </button>
+
+    <!-- Image -->
+    <div class="text-center max-w-4xl">
+        <img id="lightboxImg"
+             class="rounded-3xl shadow-2xl max-h-[80vh] mx-auto"/>
+
+        <p id="lightboxCaption"
+           class="text-gray-200 mt-6 text-xl font-medium"></p>
+    </div>
+
+    <!-- Next -->
+    <button id="nextBtn"
+            class="absolute right-8 text-white text-5xl font-bold">
+        ›
+    </button>
+
+</div>
+
+<!-- Load JS + CSS -->
+<sly data-sly-use.clientlib="core/wcm/components/commons/v1/templates/clientlib.html">
+    <sly data-sly-call="${clientlib.js @ categories='gallery', async=true}"></sly>
+</sly>
+

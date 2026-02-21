@@ -1,0 +1,9 @@
+#prevBtn,
+#nextBtn {
+  transition: transform 0.3s ease;
+}
+
+#prevBtn:hover,
+#nextBtn:hover {
+  transform: scale(1.15);
+}
