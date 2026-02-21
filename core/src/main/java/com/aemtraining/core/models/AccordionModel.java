@@ -4,6 +4,8 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.ChildResource;
+import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import java.util.Collections;
@@ -15,25 +17,11 @@ import java.util.List;
 )
 public class AccordionModel {
 
-    @ValueMapValue
-    private String heading;
-
-    @ValueMapValue
-    private String description;
-
     /**
      * Outer multifield node: "./groups"
      */
     @ChildResource
     private List<GroupRow> groups;
-
-    public String getHeading() {
-        return heading;
-    }
-
-    public String getDescription() {
-        return description;
-    }
 
     public List<GroupRow> getGroups() {
         return groups != null ? Collections.unmodifiableList(groups) : Collections.emptyList();
@@ -50,6 +38,7 @@ public class AccordionModel {
 
         @ValueMapValue
         private String description;
+
 
         /**
          * Inner multifield node: "./items"
