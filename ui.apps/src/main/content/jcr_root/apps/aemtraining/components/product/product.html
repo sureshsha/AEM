@@ -1,0 +1,24 @@
+<sly data-sly-use.model="com.aemtraining.core.models.ProductModel" />
+
+<div class="max-w-sm mx-auto bg-white rounded-3xl shadow-lg border border-slate-200
+            overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
+
+    <div data-sly-test="${model.image}" class="h-56 overflow-hidden">
+        <img src="${model.image}" alt="${model.title}"
+             class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"/>
+    </div>
+
+    <div class="p-6">
+        <h2 class="text-xl font-bold text-slate-900">
+            ${model.title}
+        </h2>
+
+        <p class="mt-2 text-slate-600 text-sm">
+            ${model.description}
+        </p>
+
+        <div class="mt-4 text-lg font-semibold text-indigo-600">
+            ₹ ${model.price}
+        </div>
+    </div>
+</div>
