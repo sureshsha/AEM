@@ -1,18 +1,46 @@
-<sly data-sly-use.model="com.aemtraining.core.models.BlogPaginationModel" />
+<sly data-sly-use.model="com.aemtraining.core.models.AdventuresPaginationModel"></sly>
 
 <div class="max-w-6xl mx-auto p-4 md:p-8">
 
+    <!-- Header -->
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-3">
+        <div>
+            <h2 class="text-2xl md:text-3xl font-bold text-slate-900">
+                Adventures
+            </h2>
+            <p class="mt-1 text-slate-600 text-sm">
+                Page ${model.pageno} of ${model.links.size}
+            </p>
+        </div>
+    </div>
+
+    <!-- Empty State -->
+    <div data-sly-test="${model.cards.size == 0}"
+         class="mt-8 rounded-2xl border border-slate-200 bg-slate-50 p-6 text-slate-700">
+        No pages found. Check the Parent Page Path in the dialog.
+    </div>
+
     <!-- Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div data-sly-test="${model.cards.size > 0}"
+         class="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
         <a data-sly-list.card="${model.cards}"
            href="${card.url}"
            class="group rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden hover:shadow-md transition-shadow">
 
-            <div data-sly-test="${card.image}" class="h-44 w-full overflow-hidden bg-slate-100">
-                <img src="${card.image}" alt="${card.title}"
-                     class="h-full w-full object-cover group-hover:scale-105 transition-transform" />
+            <!-- Image -->
+            <div class="h-44 w-full overflow-hidden bg-slate-100">
+                <img data-sly-test="${card.image}"
+                     src="${card.image}"
+                     alt="${card.title}"
+                     class="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <div data-sly-test="${!card.image}"
+                     class="h-full w-full flex items-center justify-center text-slate-400 text-sm">
+                    No image
+                </div>
             </div>
 
+            <!-- Content -->
             <div class="p-5">
                 <h3 class="text-lg font-semibold text-slate-900 line-clamp-2">
                     ${card.title}
@@ -22,37 +50,44 @@
                     ${card.description}
                 </p>
 
-                <div class="mt-4 text-sm font-medium text-slate-900">
-                    Read more →
+                <p data-sly-test="${card.date}"
+                   class="mt-4 text-xs text-slate-500">
+                    Last modified: ${card.date @ format='dd MMM yyyy'}
+                </p>
+
+                <div class="mt-5 inline-flex items-center gap-2 text-sm font-medium text-indigo-600">
+                    View details <span class="transition-transform group-hover:translate-x-1">→</span>
                 </div>
             </div>
+
         </a>
     </div>
 
     <!-- Pagination -->
-    <div class="mt-10 flex items-center justify-center gap-2">
+    <div data-sly-test="${model.links.size > 1}"
+         class="mt-10 flex flex-wrap items-center justify-center gap-2">
 
+        <!-- Prev -->
         <a data-sly-test="${model.hasPrev}"
            href="${model.prevUrl}"
-           class="px-3 py-2 rounded-lg border border-slate-200 text-slate-700 hover:bg-slate-50">
+           class="px-3 py-2 rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-50">
             Prev
         </a>
 
-        <sly data-sly-list.l="${model.links}">
-            <a href="${l.url}"
-               data-sly-attribute.class="${l.pageNo == model.pageno
-           ? 'px-3 py-2 rounded-lg border bg-slate-900 text-white border-slate-900'
-           : 'px-3 py-2 rounded-lg border border-slate-200 text-slate-700 hover:bg-slate-50'}">
-                ${l.pageNo}
-            </a>
-        </sly>
-
-        <a data-sly-test="${model.hasNext}"
-           href="${model.nextUrl}"
-           class="px-3 py-2 rounded-lg border border-slate-200 text-slate-700 hover:bg-slate-50">
-            Next
+        <!-- Page Numbers -->
+        <a data-sly-list.l="${model.links}"
+           href="${l.url}"
+           class="px-3 py-2 rounded-xl border border-slate-200 hover:bg-slate-50
+                  ${l.pageNo == model.pageno ? 'bg-slate-900 text-white border-slate-900' : 'bg-white text-slate-700'}">
+            ${l.pageNo}
         </a>
 
+        <!-- Next -->
+        <a data-sly-test="${model.hasNext}"
+           href="${model.nextUrl}"
+           class="px-3 py-2 rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-50">
+            Next
+        </a>
     </div>
 
 </div>

@@ -145,5 +145,10 @@ Import-Package: javax.annotation;version=0.0.0,*
             <artifactId>lombok</artifactId>
             <version>1.18.24</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.sling</groupId>
+            <artifactId>org.apache.sling.models.jacksonexporter</artifactId>
+            <version>1.0.8</version>
+        </dependency>
     </dependencies>
 </project>
