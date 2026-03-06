@@ -10,12 +10,17 @@ import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.ChildResource;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Model(
         adaptables = Resource.class,
         defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL
 )
 public class GalleryModel {
+
+    private static final Logger logger = LoggerFactory.getLogger(GalleryModel.class);
+
 
     @ValueMapValue
     private String title;
@@ -35,7 +40,9 @@ public class GalleryModel {
             for (Resource child : images.getChildren()) {
 
                 String src = child.getValueMap().get("src", "");
+                logger.info("src {}", src);
                 String caption = child.getValueMap().get("caption", "");
+                logger.info("caption {}", caption );
 
                 imageList.add(new ImageItem(src, caption));
             }

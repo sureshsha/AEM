@@ -11,12 +11,16 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Model(
         adaptables = SlingHttpServletRequest.class,
         defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL
 )
 public class GreetingModel {
+    private static final Logger logger = LoggerFactory.getLogger(GreetingModel.class);
+
 
     @Self
     private SlingHttpServletRequest request;
@@ -28,6 +32,8 @@ public class GreetingModel {
     private Resource resource;
 
     public String getCurrentPage() {
+        logger.info("pageTitle {}", currentPage.getPageTitle());
+        logger.info("PageName: {}", currentPage.getName());
         return currentPage.getPageTitle() != null ? currentPage.getPageTitle() : currentPage.getName();
     }
 

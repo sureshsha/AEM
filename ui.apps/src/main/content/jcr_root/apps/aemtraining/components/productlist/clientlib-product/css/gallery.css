@@ -1,0 +1,18 @@
+#lightbox img {
+  transition: transform 0.4s ease;
+}
+
+#lightbox img:hover {
+  transform: scale(1.02);
+}
+
+#prevBtn,
+#nextBtn {
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+#prevBtn:hover,
+#nextBtn:hover {
+  opacity: 1;
+}

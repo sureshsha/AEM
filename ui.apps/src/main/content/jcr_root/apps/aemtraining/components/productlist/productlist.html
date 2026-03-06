@@ -1,0 +1,19 @@
+<!-- Tailwind CDN -->
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/dist/tailwind.min.css" rel="stylesheet">
+
+<div
+        class="productlist-container min-h-[100px] p-4"
+        data-resource="${resource.path}"
+>
+
+    <!-- Loading State -->
+    <div class="text-center text-gray-500 text-lg py-6">
+        Loading products…
+    </div>
+
+</div>
+
+<!-- Clientlib JS -->
+<sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html">
+    <sly data-sly-call="${clientlib.js @ categories='productlist'}"/>
+</sly>
