@@ -26,7 +26,7 @@ public class SendTestEmailServlet extends SlingSafeMethodsServlet {
 String firstName = request.getParameter("fname");
 String lastName = request.getParameter("lname");
         boolean sent = emailService.sendEmail(
-                "sureshkumar.ece15@gmail.com",
+                "",
                 "Welcome to AEM Trainings",
                 "Hi "+firstName + "Welcome to AEM Trainings."
         );

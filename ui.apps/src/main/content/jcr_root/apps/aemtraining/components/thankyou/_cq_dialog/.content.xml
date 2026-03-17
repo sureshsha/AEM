@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root
+        xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+        xmlns:jcr="http://www.jcp.org/jcr/1.0"
+        xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+        xmlns:cq="http://www.day.com/jcr/cq/1.0"
+        jcr:primaryType="nt:unstructured"
+        jcr:title="Nested Accordion (Tailwind)"
+        sling:resourceType="cq/gui/components/authoring/dialog">
+
+    <content
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/container">
+
+        <items jcr:primaryType="nt:unstructured">
+
+            <tabs
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/tabs">
+
+                <items jcr:primaryType="nt:unstructured">
+
+                    <basic
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Content"
+                            sling:resourceType="granite/ui/components/coral/foundation/container">
+
+                        <items jcr:primaryType="nt:unstructured">
+
+                            <!-- Outer Multifield: Groups -->
+                            <groups
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                    fieldLabel="Groups"
+                                    composite="{Boolean}true">
+
+                                <field
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                                        name="./groups">
+
+                                    <items jcr:primaryType="nt:unstructured">
+
+                                        <groupTitle
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Group Title"
+                                                name="./title"/>
+
+                                        <groupDesc
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+                                                fieldLabel="Group Description"
+                                                name="./description"/>
+
+                                        <!-- Inner Multifield: Items -->
+                                        <itemsMf
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                                fieldLabel="Items"
+                                                composite="{Boolean}true">
+
+                                            <field
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                                                    name="./items">
+
+                                                <items jcr:primaryType="nt:unstructured">
+
+                                                    <question
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                            fieldLabel="Question"
+                                                            name="./question"/>
+
+                                                    <answer
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+                                                            fieldLabel="Answer"
+                                                            name="./answer"/>
+
+                                                </items>
+                                            </field>
+                                        </itemsMf>
+
+                                    </items>
+                                </field>
+                            </groups>
+
+                        </items>
+                    </basic>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

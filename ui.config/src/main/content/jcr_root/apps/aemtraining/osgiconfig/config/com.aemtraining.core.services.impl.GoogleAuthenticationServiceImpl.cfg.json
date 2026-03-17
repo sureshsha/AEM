@@ -1,0 +1,6 @@
+// Configuration created by Apache Sling JCR Installer
+{
+  "googleClientId":"848331957795-1a8bt6nedej4jg6co72q5mjfctl55qrl.apps.googleusercontent.com",
+  "tokenVerificationUrl": "https://oauth2.googleapis.com/tokeninfo?id_token=",
+  "successRedirectPath":"/content/aemtraining/us/en/thankyou"
+}
