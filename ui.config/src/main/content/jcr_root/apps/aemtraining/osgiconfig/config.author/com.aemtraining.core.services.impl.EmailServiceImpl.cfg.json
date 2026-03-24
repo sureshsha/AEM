@@ -1,0 +1,10 @@
+// Configuration created by Apache Sling JCR Installer
+{
+  "site":[
+    "/content/en",
+    "/content/us/change"
+  ],
+  "number:Integer":10,
+  "checkbox":true,
+  "sites":"site"
+}
